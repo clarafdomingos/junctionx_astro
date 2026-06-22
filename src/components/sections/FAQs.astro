@@ -1,0 +1,114 @@
+<section id="faq" class="block">
+  <div class="container">
+    <h2 class="h2">FAQS</h2>
+    <h3 class="h3">Find answers to commonly asked questions about Junction X Lisbon</h3>
+
+    <div class="faq-list">
+      <!-- Item 1 -->
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          What is JunctionX Lisbon?
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>
+            JunctionX Lisbon is a 36-hour international hackathon where participants build tech solutions
+            to real-world problems proposed by partner companies and institutions.
+          </p>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          Who can participate?
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>
+            Anyone with an interest in technology, design, or entrepreneurship. You can join individually
+            or in teams of up to 5 people.
+          </p>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          Do I need experience?
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>
+            No. Beginners are welcome! Mentors and workshops will be available during the event.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-list {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-item {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .faq-question {
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    background: white;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+    padding: 0 1rem;
+  }
+
+  .faq-answer p {
+    margin: 1rem 0;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 200px;
+  }
+
+  .faq-item.active .icon {
+    transform: rotate(45deg);
+  }
+
+  .icon {
+    transition: transform 0.2s ease;
+  }
+</style>
+
+<script>
+  const items = document.querySelectorAll(".faq-item");
+
+  items.forEach((item) => {
+    const button = item.querySelector(".faq-question");
+
+    button.addEventListener("click", () => {
+      item.classList.toggle("active");
+    });
+  });
+</script>

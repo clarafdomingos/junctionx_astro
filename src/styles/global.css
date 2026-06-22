@@ -308,7 +308,7 @@ section[id="partners"] {
 .main {
     position: relative;
     overflow: hidden;
-    background-image: url('./assets/initial-image.jpg');
+    background-image: url('../../public/assets/initial-image.jpg');
     background-size: cover;
     background-position: center;
     background-position: top;     
