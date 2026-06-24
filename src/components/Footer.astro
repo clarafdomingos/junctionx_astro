@@ -1,0 +1,124 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="grid">
+
+      <!-- Logo -->
+      <div class="logo">
+        <a href="/">
+          <img src="../../public/assets/junctionx-banner.png" alt="Logo" />
+        </a>
+        <p>Hackathon 2026</p>
+      </div>
+
+      <!-- Links -->
+      <div class="column">
+        <h4>Evento</h4>
+        <ul>
+          <li><a href="#about">Sobre</a></li>
+          <li><a href="#schedule">Programa</a></li>
+          <li><a href="#speakers">Oradores</a></li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h4>Redes</h4>
+        <ul>
+          <li><a href="https://github.com">GitHub</a></li>
+          <li><a href="https://discord.com">Discord</a></li>
+          <li><a href="https://linkedin.com">LinkedIn</a></li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/privacy">Privacidade</a></li>
+          <li><a href="/conduct">Código de Conduta</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="bottom">
+      © {year} Hackathon 2026
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: #171717
+    color: white;
+    padding: 3rem 1.5rem;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 1080px) {
+    .grid {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      align-items: start;
+    }
+  }
+
+  .logo img {
+    width: 1080px;
+    height: auto;
+  }
+
+  .logo p {
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    opacity: 0.8;
+  }
+
+  h4 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    margin-bottom: 0.75rem;
+  }
+
+  a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  a:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+
+  .bottom {
+    margin-top: 2.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    font-size: 0.875rem;
+    opacity: 0.7;
+  }
+</style>

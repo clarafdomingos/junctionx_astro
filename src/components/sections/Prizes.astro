@@ -1,10 +1,45 @@
 <!-- ===== PRIZES ===== -->
-  <section id="prizes" class="container--prizes">
-    <div class="container--prizes">
-        <h2 class="h2">Prizes</h2>
-        <div class="prose">
+<section id="prizes" class="prizes">
+  <div class="container">
+    <div class="prizes__content">
+      <h2 class="h2 h2--dark">Prizes</h2>
+      <div class="prose">
         <p>Total prize 1000€</p>
         <p>The winner has free trip to Finland to represent Portugal at Junction2026</p>
-        </div>
+      </div>
     </div>
-  </section>
+    <div class="prizes__image">
+      <!-- imagem vai aqui à direita -->
+    </div>
+  </div>
+</section>
+
+<style>
+  .prizes {
+    background-color: #BDBDFF;
+    padding-block: clamp(48px, 7vw, 96px);
+  }
+
+  .prizes .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .prizes__content {
+    color: black;
+  }
+
+  .prizes__content .prose p {
+    color: black;
+    font-size: clamp(16px, 2vw, 18px);
+    margin: 8px 0;
+  }
+
+  @media (max-width: 768px) {
+    .prizes .container {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

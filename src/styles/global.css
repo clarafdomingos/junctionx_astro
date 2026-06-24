@@ -124,14 +124,20 @@ section {
 .h2 {
     font-family: "Press Start 2P", monospace, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     font-weight: 300;
-    font-size: clamp(32px, 6.5vw, 54px);
+    font-size: clamp(20px, 2.5vw, 36px);
     line-height: 1.08;
     margin: 10px 0 10px;
     text-transform: uppercase;
+    padding-bottom: 20px;
 }
 
-.h2 {
-    padding-bottom: 20px;
+
+.h2--black {
+    color: #000000;
+}
+
+.h2--light-purple {
+    color: #BDBDFF;
 }
 
 .h1 .logo-inline,
@@ -148,7 +154,7 @@ section {
 }
 
 /* NAV BAR */
-header {
+/* header {
     position: sticky;
     top: 0;
     z-index: 50;
@@ -156,7 +162,7 @@ header {
     background: rgba(11, 10, 40, .7);
     border-bottom: 1px solid rgba(255, 255, 255, .06);
     z-index: 1000;
-}
+} */
 
 .nav {
     display: flex;
