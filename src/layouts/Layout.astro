@@ -16,6 +16,20 @@ const { title = "JunctionX", description = "The largest AI hackaton in Lisbon" }
   </head>
   <body>
     <Header />
-    <slot />
+    <div class="zoom-wrapper">
+      <slot />
+    </div>
   </body>
 </html>
+
+<style is:global>
+  html {
+    overflow-x: hidden;
+  }
+  .zoom-wrapper {
+    transform: scale(1.2);
+    transform-origin: top left;
+    width: calc(100% / 1.2);
+    min-height: calc(100% / 1.2);
+  }
+</style>
