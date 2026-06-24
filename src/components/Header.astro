@@ -13,9 +13,46 @@ import HeaderLink from './HeaderLink.astro';
       <HeaderLink href="#sponsors">Sponsors</HeaderLink>
       <HeaderLink href="#faq">FAQs</HeaderLink>
       <HeaderLink href="/our_team">Our Team</HeaderLink>
+      <div class="others">
+        <button type="button" class="others-toggle" aria-haspopup="true" aria-expanded="false">
+          Others
+        </button>
+        <div class="others-drawer">
+          <a href="#">Location</a>
+          <a href="#">Testimonials</a>
+          <a href="#">Challenges</a>
+        </div>
+      </div>
     </div>
   </nav>
 </header>
+
+<script>
+  document.querySelectorAll('.others').forEach((wrapper) => {
+    const toggle = wrapper.querySelector('.others-toggle');
+    const drawer = wrapper.querySelector('.others-drawer');
+    if (!toggle || !drawer) return;
+
+    const close = () => {
+      wrapper.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    };
+
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = wrapper.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!wrapper.contains(e.target)) close();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+  });
+</script>
 
 <style>
   header {
@@ -60,6 +97,60 @@ import HeaderLink from './HeaderLink.astro';
     opacity: 1;
     pointer-events: none;
     background: rgba(255, 255, 255, 0.05);
+  }
+  .others {
+    position: relative;
+  }
+  .others-toggle {
+    opacity: 0.8;
+    padding: 8px 10px;
+    white-space: nowrap;
+    color: black;
+    background: none;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    transition: opacity 0.2s, background 0.2s;
+  }
+  .others-toggle:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .others-drawer {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    min-width: 160px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0, 0.12);
+    padding: 6px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+    z-index: 10;
+  }
+  .others.open .others-drawer {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .others-drawer a {
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    color: black;
+    opacity: 0.8;
+  }
+  .others-drawer a:hover {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.05);
   }
   @media (max-width: 720px) {
     .internal-links {
