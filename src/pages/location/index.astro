@@ -1,0 +1,48 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Location | JunctionX Lisbon">
+  <main class="location">
+    <div class="container">
+      <h2 class="h2 h2--light-purple">Location</h2>
+
+      <div class="actions">
+        <a class="btn btn--apply" href="https://maps.app.goo.gl/69XvYP5Bne8KPPW27" target="_blank" rel="noopener">
+          See Maps <span class="btn btn--apply-arrow"> > </span>
+        </a>
+      </div>
+
+      <div class="location__map">
+        <img src="/assets/maps-preview.png" alt="Map of the event location" />
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .location {
+    background: #171717;
+    padding-block: clamp(48px, 7vw, 96px);
+    min-height: 80dvh;
+  }
+
+  .location h2 {
+    margin-bottom: 8px;
+  }
+
+  .location__map {
+    margin-block: 40px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .1);
+    width: 80%;       
+    max-width: 700px;
+    margin-inline: auto;
+  }
+
+  .location__map img {
+      width: 100%;
+      object-fit: cover;
+  }
+</style>
