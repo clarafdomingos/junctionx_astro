@@ -1,0 +1,158 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { testimonials } from '../../data/testimonials';
+
+function initials(name: string) {
+  return name
+    .split(' ')
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join('');
+}
+---
+
+<Layout
+  title="Testimonials | JunctionX Lisbon"
+  description="Hear from participants and partners about their experience at JunctionX Lisbon."
+>
+  <main class="testimonials">
+    <div class="container">
+      <p class="eyebrow">What people say</p>
+      <h2 class="h2 h2--light-purple">Testimonials</h2>
+      <p class="lead testimonials__intro">
+        Stories from hackers, students, and organizers who have taken part in JunctionX Lisbon.
+      </p>
+
+      <div class="testimonials-grid">
+        {testimonials.map((item) => (
+          <article class="testimonial">
+            <blockquote class="testimonial__quote">
+              <span class="testimonial__mark" aria-hidden="true">"</span>
+              <p>{item.quote}</p>
+            </blockquote>
+            <footer class="testimonial__footer">
+              <div class="testimonial__avatar" aria-hidden="true">
+                {initials(item.name)}
+              </div>
+              <div class="testimonial__meta">
+                <cite class="testimonial__name">{item.name}</cite>
+                <p class="testimonial__role">{item.role}</p>
+                {item.edition && <p class="testimonial__edition">{item.edition}</p>}
+              </div>
+            </footer>
+          </article>
+        ))}
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .testimonials {
+    background: #171717;
+    padding-block: clamp(48px, 7vw, 96px);
+    min-height: 80dvh;
+  }
+
+  .testimonials__intro {
+    max-width: 52ch;
+    margin-block: 0 40px;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .testimonial {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 28px 28px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.02));
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  }
+
+  .testimonial__quote {
+    margin: 0;
+    position: relative;
+  }
+
+  .testimonial__mark {
+    display: block;
+    font-family: Georgia, serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: #bdbdff;
+    opacity: 0.45;
+    margin-bottom: 4px;
+  }
+
+  .testimonial__quote p {
+    margin: 0;
+    color: #e5e7eb;
+    font-size: clamp(15px, 1.6vw, 17px);
+    line-height: 1.75;
+    text-wrap: pretty;
+  }
+
+  .testimonial__footer {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .testimonial__avatar {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    color: #171717;
+    background: linear-gradient(135deg, #bdbdff, #5865f2);
+  }
+
+  .testimonial__meta {
+    min-width: 0;
+  }
+
+  .testimonial__name {
+    display: block;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #fff;
+  }
+
+  .testimonial__role {
+    margin: 2px 0 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .testimonial__edition {
+    margin: 4px 0 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #bdbdff;
+  }
+
+  @media (max-width: 900px) {
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
