@@ -56,11 +56,13 @@ import HeaderLink from './HeaderLink.astro';
 
 <style>
   header {
-    margin: 0;
-    padding: 0 1em;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: saturate(160%) blur(8px);
     background: rgba(11, 10, 40, .7);
     border-bottom: 1px solid rgba(255, 255, 255, .06);
-    box-shadow: 0 2px 8px rgba(0,0,0, 0.05);
+    z-index: 1000;
   }
   nav {
     display: flex;
