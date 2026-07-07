@@ -29,6 +29,7 @@ body {
     color: var(--white);
     background: var(--bg);
     height: 100%;
+    text-shadow: var(--text-shadow);
 }
 
 html,
@@ -90,28 +91,40 @@ section {
 .btn--apply {
     display: inline-flex;
     align-items: center;
-    background: white;
+    gap: 16px;
+    background: #fff;
     color: #111;
     font-weight: 700;
     font-size: 15px;
-    border-radius: 555px;
-    padding: 1px 7px 1px 20px;
-    gap: 60px;
+    letter-spacing: 0.04em;
+    border-radius: 9999px;
+    padding: 8px 8px 8px 24px;
     text-decoration: none;
     border: none;
     cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    text-shadow: none;
+}
+
+.btn--apply:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.32);
 }
 
 .btn--apply-arrow {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
     background: #111;
-    color: white;
-    width: 5px;
-    height: 5px;
+    color: #fff;
     border-radius: 50%;
-    font-size: 20px;
+    font-size: 18px;
+    line-height: 1;
+    text-shadow: none;
 }
 
 .h1{
@@ -121,6 +134,7 @@ section {
     line-height: 1.08;
     margin: 10px 0 10px;
     text-transform: uppercase;
+    text-shadow: var(--text-shadow);
 }
 .h2 {
     font-family: "Press Start 2P", monospace, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;

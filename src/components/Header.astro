@@ -16,11 +16,14 @@ import HeaderLink from './HeaderLink.astro';
       <div class="others">
         <button type="button" class="others-toggle" aria-haspopup="true" aria-expanded="false">
           Others
+          <span class="others-chevron" aria-hidden="true">▾</span>
         </button>
         <div class="others-drawer">
-          <a href="/location">Location</a>
-          <a href="/testimonials">Testimonials</a>
-          <a href="/challenges">Challenges</a>
+          <div class="others-drawer-inner">
+            <a href="/location">Location</a>
+            <a href="/testimonials">Testimonials</a>
+            <a href="/challenges">Challenges</a>
+          </div>
         </div>
       </div>
     </div>
@@ -34,31 +37,6 @@ import HeaderLink from './HeaderLink.astro';
   };
   updateHeader();
   window.addEventListener('scroll', updateHeader, { passive: true });
-
-  document.querySelectorAll('.others').forEach((wrapper) => {
-    const toggle = wrapper.querySelector('.others-toggle');
-    const drawer = wrapper.querySelector('.others-drawer');
-    if (!toggle || !drawer) return;
-
-    const close = () => {
-      wrapper.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-    };
-
-    toggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = wrapper.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', String(isOpen));
-    });
-
-    document.addEventListener('click', (e) => {
-      if (!wrapper.contains(e.target)) close();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') close();
-    });
-  });
 </script>
 
 <style>
@@ -103,6 +81,7 @@ import HeaderLink from './HeaderLink.astro';
     color: white;
     border-radius: 16px;
     transition: opacity 0.2s, background 0.2s;
+    text-shadow: var(--text-shadow);
   }
   .internal-links a:hover {
     opacity: 1;
@@ -117,6 +96,9 @@ import HeaderLink from './HeaderLink.astro';
     position: relative;
   }
   .others-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     opacity: 0.8;
     padding: 8px 10px;
     white-space: nowrap;
@@ -128,30 +110,55 @@ import HeaderLink from './HeaderLink.astro';
     font: inherit;
     font-weight: 700;
     transition: opacity 0.2s, background 0.2s;
+    text-shadow: var(--text-shadow);
   }
-  .others-toggle:hover {
+  .others-toggle:hover,
+  .others:focus-within .others-toggle {
     opacity: 1;
     background: rgba(255, 255, 255, 0.1);
   }
+  .others-chevron {
+    font-size: 0.85em;
+    line-height: 1;
+    transition: transform 0.2s ease;
+  }
+  .others:hover .others-chevron,
+  .others:focus-within .others-chevron {
+    transform: translateY(1px);
+  }
   .others-drawer {
     position: absolute;
-    top: calc(100% + 8px);
+    top: 100%;
     left: 0;
+    padding-top: 8px;
     display: flex;
     flex-direction: column;
     min-width: 160px;
-    background: rgba(11, 10, 40, .95);
-    border: 1px solid rgba(255, 255, 255, .06);
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0,0,0, 0.25);
-    padding: 6px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-6px);
     transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
     z-index: 10;
   }
-  .others.open .others-drawer {
+  .others-drawer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+  }
+  .others-drawer-inner {
+    display: flex;
+    flex-direction: column;
+    background: rgba(11, 10, 40, .95);
+    border: 1px solid rgba(255, 255, 255, .06);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    padding: 6px;
+  }
+  .others:hover .others-drawer,
+  .others:focus-within .others-drawer {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -163,6 +170,7 @@ import HeaderLink from './HeaderLink.astro';
     text-decoration: none;
     color: white;
     opacity: 0.8;
+    text-shadow: var(--text-shadow);
   }
   .others-drawer a:hover {
     opacity: 1;
