@@ -4,18 +4,38 @@ import Layout from '../../layouts/Layout.astro';
 
 <Layout title="Location | JunctionX Lisbon">
   <main class="location">
-    <div class="container">
-      <h2 class="h2 h2--light-purple">Location</h2>
-
-      <div class="actions">
-        <a class="btn btn--apply" href="https://maps.app.goo.gl/69XvYP5Bne8KPPW27" target="_blank" rel="noopener">
-          See Maps <span class="btn btn--apply-arrow"> > </span>
-        </a>
+    <div class="container location__grid">
+      
+      <div class="location__info">
+        <h2 class="h2 h2--light-purple">Location</h2>
+        
+        <div class="location__details">
+          <h3 class="location__venue">IST - Campus Taguspark</h3>
+          <p class="location__address">
+            Av. Prof. Dr. Cavaco Silva<br>
+            2744-016 Porto Salvo, Portugal
+          </p>
+        </div>
+        
+        <div class="location__transport">
+          <p>🚌 <strong>Bus:</strong> <a href="https://www.carrismetropolitana.pt/" target="_blank" rel="noopener" class="transport-link">Carris Metropolitana</a></p>
+          <p>🚗 <strong>Car:</strong> Free parking avaliable</p>
+          <p>🚐 <strong>IST Shuttle:</strong> <span class="badge badge--pending">Pending Confirmation</span></p>
+        </div>
       </div>
 
       <div class="location__map">
-        <img src="/assets/maps-preview.png" alt="Map of the event location" />
+        <iframe 
+          src="https://maps.google.com/maps?q=Instituto%20Superior%20Tecnico%20Taguspark&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+          width="100%" 
+          height="400" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
       </div>
+
     </div>
   </main>
 </Layout>
@@ -23,26 +43,95 @@ import Layout from '../../layouts/Layout.astro';
 <style>
   .location {
     background: #171717;
-    padding-block: clamp(48px, 7vw, 96px);
+    padding-block: clamp(60px, 10vw, 120px);
     min-height: 80dvh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
   }
 
-  .location h2 {
-    margin-bottom: 8px;
+  .location__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  @media (min-width: 800px) {
+    .location__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+  }
+
+  .location__info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .location__info h2 {
+    margin-bottom: 0;
+  }
+
+  .location__venue {
+    color: white;
+    font-size: 1.8rem;
+    margin: 0 0 8px 0;
+    font-weight: bold;
+  }
+
+  .location__address {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .location__transport {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 12px;
+    color: white;
+  }
+
+  .location__transport p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .actions {
+    margin-top: 10px;
   }
 
   .location__map {
-    margin-block: 40px;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
     border-radius: 20px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, .1);
-    width: 80%;       
-    max-width: 700px;
-    margin-inline: auto;
+    border: 3px solid rgba(60, 55, 180, 0.8); 
+    box-shadow: 0 0 30px rgba(60, 55, 180, 0.5);
   }
 
-  .location__map img {
-      width: 100%;
-      object-fit: cover;
+  .map-glow {
+    position: absolute;
+    inset: -15px; /* Expande a luz para fora da caixa */
+    background: rgba(60, 55, 180, 0.6); /* Versão "acesa" do teu azul/roxo */
+    filter: blur(35px);
+    z-index: 0;
+    pointer-events: none;
+    display: block; /* Voltamos a ligar o glow! */
+  }
+
+  .location__map iframe {
+    position: relative;
+    z-index: 1; 
+    width: 100%;
+    display: block;
+    border-radius: 17px; 
   }
 </style>
