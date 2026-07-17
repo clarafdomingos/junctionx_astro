@@ -1,66 +1,120 @@
-<!-- ===== SPONSORS ===== -->
-  <section id="sponsors">
-    <div class="container block">
-      <h2 class="h2 h2--light-purple">Sponsors</h2>
+---
+// src/components/Sponsors.astro
+const sponsors = [
+  { name: "NOS", logo: "../../public/assets/sponsors/nos.png" },
+  { name: "NVIDIA", logo: "../../public/assets/sponsors/nvidia.png" },
+  { name: "Sponsor 3", logo: "/logos/Sponsor3.png" },
+  { name: "Sponsor 4", logo: "/logos/Sponsor4.png" },
+];
+---
 
-      <!-- 2–3 main sponsors -->
-      <div class="sponsors-challenges">
-        <article class="partner-card">
-          <div class="logo-box">
-            <img src="../../public/assets/sponsors/nos.png" alt="Partner name">
+<section class="Sponsors">
+  <div class="container">
+    <h2 class="h2 h2--light-purple">Sponsors</h2>
+  </div>
+
+  <div class="Sponsors__track-wrapper">
+    <div class="Sponsors__track">
+      <div class="Sponsors__group">
+        {sponsors.map((p) => (
+          <div class="sponsors__logo">
+            <img src={p.logo} alt={p.name} />
           </div>
-          <h3>NOS Portugal</h3>
-          <p>A leading tech consultancy driving
-            digital transformation in healthcare,
-            financial services, and public sectors
-            across Europe and beyond.</p>
-        </article>
-        <article class="partner-card">
-          <div class="logo-box">
-            <img src="./assets/albatroz.png" alt="Partner name">
-          </div>
-          <h3>Albatroz Engenharia SA</h3>
-          <p>A Portuguese innovator in AI-
-            powered inspection systems and
-            UAV technologies for the electric
-            power industry.</p>
-        </article>
-        <article class="partner-card">
-          <div class="logo-box">
-            <img src="./assets/gimm.png" alt="Partner name">
-          </div>
-          <h3>Gulbenkian Institute for Molecular Medicine</h3>
-          <p>GIMM is dedicated to fostering a dynamic, collaborative,
-            and sustainable research environment that spans disciplines
-            from basic to clinical research
-          </p>
-        </article>
+        ))}
       </div>
 
-      <!-- 2-4 small sponsors -->
-      <p class="eyebrow small">Community sponsors</p>
-      <div class="sponsors-media">
-        <div class="partner-chip" aria-label="Comudel">
-          <span class="chip-logo"><img src="./assets/comudel.png" alt="Comudel"></span>
-          <span class="chip-name">Comudel</span>
-        </div>
-      
-        <div class="partner-chip" aria-label="Jane Street">
-          <span class="chip-logo">
-            <img class="logo--dark" src="./assets/jane-street.png" alt="Jane Street">
-          </span>
-          <span class="chip-name">Jane Street</span>
-        </div>
-
-        <div class="partner-chip" aria-label="Pointer5">
-          <span class="chip-logo"><img src="./assets/pointer5.png" alt="Pointer5"></span>
-          <span class="chip-name">Pointer5</span>
-        </div>
-
-        <div class="partner-chip" aria-label="Comudel">
-          <span class="chip-logo"><img src="./assets/dominos.png" alt="Domino's Pizza"></span>
-          <span class="chip-name">Domino's Pizza</span>
-        </div>
+      <div class="Sponsors__group" aria-hidden="true">
+        {sponsors.map((p) => (
+          <div class="sponsors__logo">
+            <img src={p.logo} alt="" />
+          </div>
+        ))}
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<style>
+  .Sponsors {
+    background: #171717;
+    padding-block: clamp(60px, 10vw, 120px);
+    overflow: hidden;
+  }
+
+  .Sponsors__track-wrapper {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 40px;
+    /* fade nas pontas, opcional mas fica muito bem */
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      #000 10%,
+      #000 90%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      #000 10%,
+      #000 90%,
+      transparent 100%
+    );
+  }
+
+  .Sponsors__track {
+    display: flex;
+    width: max-content;
+    animation: scroll 30s linear infinite;
+  }
+
+  .Sponsors__group {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    flex-shrink: 0;
+    /* THIS is important */
+    padding-right: 60px;
+  }
+
+  @keyframes scroll {
+    to {
+      transform: translateX(calc(-100% / 2));
+    }
+  }
+
+  .Sponsors__track:hover {
+    animation-play-state: paused;
+  }
+
+  .sponsors__logo {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    width: 160px;
+  }
+
+  .sponsors__logo img {
+    max-width: 100%;  
+    max-height: 100%;
+    object-fit: contain;
+    opacity: 0.7;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+  }
+
+  .sponsors__logo img:hover {
+    opacity: 1;
+  }
+
+  @keyframes scroll-Sponsors {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      /* anda exatamente metade da largura, pois a lista está duplicada */
+      transform: translateX(-50%);
+    }
+  }
+</style>
