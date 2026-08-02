@@ -1,11 +1,7 @@
 ---
 // src/components/Sponsors.astro
-const sponsors = [
-  { name: "NOS", logo: "../../public/assets/sponsors/nos.png" },
-  { name: "NVIDIA", logo: "../../public/assets/sponsors/nvidia.png" },
-  { name: "Sponsor 3", logo: "/logos/Sponsor3.png" },
-  { name: "Sponsor 4", logo: "/logos/Sponsor4.png" },
-];
+// Replaced the logo objects with a repeating array of our mystery text
+const mysteryTexts = Array(8).fill("TO BE ANNOUNCED");
 ---
 
 <section class="Sponsors">
@@ -16,18 +12,14 @@ const sponsors = [
   <div class="Sponsors__track-wrapper">
     <div class="Sponsors__track">
       <div class="Sponsors__group">
-        {sponsors.map((p) => (
-          <div class="sponsors__logo">
-            <img src={p.logo} alt={p.name} />
-          </div>
+        {mysteryTexts.map((text) => (
+          <div class="sponsors__mystery-text">{text}</div>
         ))}
       </div>
 
       <div class="Sponsors__group" aria-hidden="true">
-        {sponsors.map((p) => (
-          <div class="sponsors__logo">
-            <img src={p.logo} alt="" />
-          </div>
+        {mysteryTexts.map((text) => (
+          <div class="sponsors__mystery-text">{text}</div>
         ))}
       </div>
     </div>
@@ -37,15 +29,21 @@ const sponsors = [
 <style>
   .Sponsors {
     background: #171717;
-    padding-block: clamp(60px, 10vw, 120px);
+    /* Reduced padding here to match the tightened spacing from Prizes */
+    padding-block: clamp(40px, 5vw, 60px);
     overflow: hidden;
+  }
+
+  .container {
+    max-width: 1050px; 
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 40px);
   }
 
   .Sponsors__track-wrapper {
     width: 100%;
     overflow: hidden;
     margin-top: 40px;
-    /* fade nas pontas, opcional mas fica muito bem */
     -webkit-mask-image: linear-gradient(
       90deg,
       transparent 0%,
@@ -65,21 +63,21 @@ const sponsors = [
   .Sponsors__track {
     display: flex;
     width: max-content;
-    animation: scroll 30s linear infinite;
+    /* Sped up the scroll slightly since it's text, not large images */
+    animation: scroll 20s linear infinite; 
   }
 
   .Sponsors__group {
     display: flex;
     align-items: center;
-    gap: 60px;
+    gap: 80px;
     flex-shrink: 0;
-    /* THIS is important */
-    padding-right: 60px;
+    padding-right: 80px;
   }
 
   @keyframes scroll {
     to {
-      transform: translateX(calc(-100% / 2));
+      transform: translateX(calc(-40% / 2));
     }
   }
 
@@ -87,34 +85,23 @@ const sponsors = [
     animation-play-state: paused;
   }
 
-  .sponsors__logo {
+  /* New styling for the mystery text instead of logos */
+  .sponsors__mystery-text {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 60px;
-    width: 160px;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 800;
+    color: #BDBDFF;
+    opacity: 0.4;
+    letter-spacing: 4px;
+    font-family: monospace;
+    text-transform: uppercase;
+    transition: opacity 0.3s ease;
   }
 
-  .sponsors__logo img {
-    max-width: 100%;  
-    max-height: 100%;
-    object-fit: contain;
-    opacity: 0.7;
-    transition: filter 0.3s ease, opacity 0.3s ease;
-  }
-
-  .sponsors__logo img:hover {
+  .sponsors__mystery-text:hover {
     opacity: 1;
-  }
-
-  @keyframes scroll-Sponsors {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      /* anda exatamente metade da largura, pois a lista está duplicada */
-      transform: translateX(-50%);
-    }
   }
 </style>
