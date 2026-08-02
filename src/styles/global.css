@@ -306,6 +306,10 @@ body.nav-open {
     border-radius: 8px;
 }
 
+section[id] {
+    scroll-margin-top: 20vh; 
+}
+
 section[id="collab"] {
     align-self: start;
     padding-block: 0;

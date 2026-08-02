@@ -4,27 +4,16 @@ import HeaderLink from './HeaderLink.astro';
 
 <header id="site-header">
   <nav>
-    <a href="/" class="brand" aria-label="JunctionX Lisbon">
+    <a href="/#top" class="brand" aria-label="JunctionX Lisbon">
       <img src="/assets/junctionx-logo.png" alt="JunctionX" class="nav-logo">
     </a>
     <div class="internal-links">
-      <HeaderLink href="/">Home</HeaderLink>
-      <HeaderLink href="#prizes">Prizes</HeaderLink>
-      <HeaderLink href="#sponsors">Sponsors</HeaderLink>
-      <HeaderLink href="#faq">FAQs</HeaderLink>
-      <HeaderLink href="/our_team">Our Team</HeaderLink>
-      <div class="others">
-        <button type="button" class="others-toggle" aria-haspopup="true" aria-expanded="false">
-          Others
-          <span class="others-chevron" aria-hidden="true">▾</span>
-        </button>
-        <div class="others-drawer">
-          <div class="others-drawer-inner">
-            <a href="/location">Location</a>
-            <a href="/challenges">Challenges</a>
-          </div>
-        </div>
-      </div>
+      <HeaderLink href="/#top">Home</HeaderLink>
+      <HeaderLink href="/#prizes">Prizes</HeaderLink>
+      <HeaderLink href="/#sponsors">Sponsors</HeaderLink>
+      <HeaderLink href="/#location">Location</HeaderLink>
+      <HeaderLink href="/#faq">FAQs</HeaderLink>
+      <HeaderLink href="/#our-team">Our Team</HeaderLink>
     </div>
   </nav>
 </header>
