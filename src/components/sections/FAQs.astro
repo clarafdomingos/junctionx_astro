@@ -139,6 +139,23 @@
     .icon {
       transition: transform 0.8s ease-in-out;
     }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .faqs {
+        padding: 24px 16px; /* Reduces the inner spacing on small screens */
+        margin: 30px auto;  /* Reduces the outer spacing */
+      }
+
+      .faq-question {
+        font-size: 0.95rem; /* Slightly smaller text to fit better */
+        padding: 0.8rem;
+      }
+
+      .faq-item.active .faq-answer {
+        max-height: 400px; /* Increased to ensure text doesn't cut off when wrapping */
+      }
+    }
   </style>
 
   <script>

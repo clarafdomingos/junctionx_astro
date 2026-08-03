@@ -364,10 +364,10 @@ import Team from "../components/sections/Team.astro";
   starGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
   const starMaterial = new THREE.PointsMaterial({
-    color: 0xBDBDFF,
-    size: 0.02,
+    color: 0xBDBDFF, // Back to your original color
+    size: 0.05,      // Kept slightly larger for visibility
     transparent: true,
-    opacity: 0.8,
+    opacity: 1,      // Fully opaque
     depthWrite: false
   });
 
@@ -375,29 +375,24 @@ import Team from "../components/sections/Team.astro";
   scene.add(stars);
 
   // Increased count from 4 to 12 for more frequent stars
-  const SHOOTING_STAR_COUNT = 12; 
+  const SHOOTING_STAR_COUNT = 1000; 
   const shootingStars = [];
 
   const resetShootingStar = (star) => {
-    // Made the angle slightly steeper downwards to fit vertical screens better
-    const direction = new THREE.Vector3(1, -0.8, 0).normalize();
+    // 45-degree angle moving down and right
+    const direction = new THREE.Vector3(1, -1, 0).normalize();
 
     star.origin.set(
-      // Spawn much closer to the visible screen area
-      -4 - Math.random() * 6, 
-      4 + Math.random() * 4,  
-      // Keep Z closer to 0 so they don't spawn behind the camera
-      (Math.random() - 0.5) * 5 
+      -5 - Math.random() * 5, // Spawn just outside the top-left of the screen
+      5 + Math.random() * 5,  
+      0                       // Lock Z exactly to 0 for a pure 2D effect
     );
     
     star.direction = direction;
-    star.speed = 10 + Math.random() * 5; 
-    // Increased the tail length to make them more visible
-    star.length = 3 + Math.random() * 2; 
-    // Reduced maximum delay so you don't have to wait as long to see one
-    star.delay = Math.random() * 3; 
-    // Increased duration so they travel completely across the screen
-    star.duration = 1.5 + Math.random(); 
+    star.speed = 15 + Math.random() * 10; // Fast speed
+    star.length = 4 + Math.random() * 2;  // Distinct tail length
+    star.delay = Math.random() * 2;       // Staggered spawns
+    star.duration = 1.5;                  // Enough time to cross the screen
     star.age = 0;
   };
 
@@ -407,10 +402,9 @@ import Team from "../components/sections/Team.astro";
       new THREE.Vector3()
     ]);
     const material = new THREE.LineBasicMaterial({
-      color: 0xBDBDFF,
+      color: 0xBDBDFF, // Back to your original color
       transparent: true,
       opacity: 0,
-      // Optional: Add a slight additive blending to make them "glow" against the background
       blending: THREE.AdditiveBlending 
     });
     const line = new THREE.Line(geometry, material);
